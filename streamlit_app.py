@@ -99,6 +99,16 @@ def preprocess_input(user_data):
     """Preprocess user input for model prediction."""
     df = pd.DataFrame([user_data])
 
+    # Ensure columns are in the same order as training data
+    correct_order = [
+        'Age', 'Marital Status', 'Education Level', 'Number of Children',
+        'Smoking Status', 'Physical Activity Level', 'Employment Status',
+        'Income', 'Alcohol Consumption', 'Dietary Habits', 'Sleep Patterns',
+        'History of Mental Illness', 'History of Substance Abuse',
+        'Family History of Depression', 'Chronic Medical Conditions'
+    ]
+    df = df[correct_order]
+
     for col in le_dict.keys():
         if col in df.columns:
             try:
